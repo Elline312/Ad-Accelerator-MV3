@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
   "name": "Ad Accelerator",
-  "version": "0.0.0.6",
+  "version": "0.0.0.7",
   "description": "Detects if a video ad is playing, mutes the video and dramatically increases speed.",
   "permissions": [ "scripting"],
-  "host_permissions": ["*://*.youtube.com/*","*://www.hulu.com/watch/*", "*://tubitv.com/movies/*",],
+  "host_permissions": ["*://*.youtube.com/*","*://www.hulu.com/watch/*", "*://tubitv.com/movies/*", "*://https://tubitv.com/tv-shows/*"],
   "background": {
   },
   "content_scripts": [
@@ -20,7 +20,14 @@
         "run_at": "document_end",
         "all_frames":true
     },
-        {"matches": ["*://tubitv.com/movies/*"],
+        {
+        "matches": ["*://tubitv.com/movies/*"],
+        "js": ["content_tubi.js"],
+        "run_at": "document_end",
+        "all_frames":true
+    },
+        {
+        "matches": ["*://https://tubitv.com/tv-shows/*"],
         "js": ["content_tubi.js"],
         "run_at": "document_end",
         "all_frames":true
